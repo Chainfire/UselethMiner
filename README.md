@@ -227,7 +227,7 @@ threading strategy:
 
 Where `STRATUM` is a comma separated list (for failover) of stratum servers:
 
-`myaccount@myserver.com:3333` or `myaccount@myserver.com:3333,myaccount@failover.com:443,myaccount@evenmorefailover.com:80`
+`account.worker@server.com:3333` or `account.worker@server.com:3333,account.worker@failover.com:443,account.worker@evenmorefailover.com:80`
 
 And `THREAD` is either a single number for a fixed amount of threads, or
 `min,max,cpu` to auto-scale between `min` and `max` threads, trying to stay
@@ -235,7 +235,7 @@ below `cpu` % cpu usage.
 
 For example:
 
-`uselethminer myaccount@myserver.com:3333 -t 1,8,60`
+`uselethminer account.worker@server.com:3333 -t 1,8,60`
 
 #### Proxy
 
@@ -246,7 +246,7 @@ For proxy mode, you need to supply the local host and port, and the same
 
 For example:
 
-`uselethminer 0.0.0.0:3333=myaccount@myserver.com:3333`
+`uselethminer 0.0.0.0:3333=account.worker@server.com:3333`
 
 The proxy is single-threaded. As it's non-verifying and pretty darn fast, 
 odds are this is more than enough for you. If you need to go beyond
