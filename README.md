@@ -3,7 +3,7 @@ Because CPU mining Ethereum is useleth; everybody knows this, *right*?
 
 UselethMiner is an ETHASH CPU miner, and:
 * speaks `EthereumStratum/1.0.0`, with automatic failover
-* comes with an aggregating encrypted proxy
+* comes with an aggregating (potentially encrypted) proxy you can also use for GPU/ASICs
 * runs on Linux (x86-64), Windows (x86-64) and OS X (x86-64 and arm64)
 * can auto-scale CPU usage based on machine load, so you can run it in the background
 * has JSON-RPC/TCP control
@@ -140,6 +140,8 @@ Stats shown in on-screen output are live and accurate.
 Note that I've really only tested UselethMiner against its own proxy and the
 ViaBTC pool at this point. ViaBTC is picked because their initial connection
 difficulty is lower than most, which improves your chances of getting paid.
+Note that where you are in the world gets you a different server, so this
+may not be the case for you. 
 
 ### UselethProxy
 
@@ -266,30 +268,34 @@ you can just write `somecommand(1, 2, 3)`. The console may also shorten the
 response displayed, but if you connect with your own code you will get a
 full JSON-RPC reply.
    
-Commands:
+Commands for both mining and proxy:
 
 `hello`: greeting, keep-alive
 
-`shutdown`: terminate UselethMiner
+`bye`, `exit`, `quit`: disconnect
 
-`start`: start mining
-
-`stop`: stop mining
+`shutdown`: terminate
 
 `connect(username[, password], host, port, [...])`: connect to stratum servers
 
 `connect("username[:password]@host:port[,...]")`: connect to stratum servers
+
+`hashrate`: show hashrate
+
+`status`: show status
+
+Additional commands for mining:
+
+`start`: start mining
+
+`stop`: stop mining
 
 `threads(x)`: use `x` threads
 
 `threads(min, max, cpu)`: auto-scale between `min` and `max` threads, keep
 below `cpu` % cpu usage
 
-`hashrate`: show hashrate
-
 `hashes`: show hashes
-
-`status`: show status
 
 #### Huge pages
 
