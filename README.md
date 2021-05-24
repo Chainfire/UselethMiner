@@ -220,6 +220,13 @@ Run `uselethminer` without any parameters for the full list of options.
 
 #### Mine
 
+UselethMiner requires a machine with at least 7 GB of RAM. You should have
+at least 5 GB of free physical RAM (not swap) or you will probably have a
+bad time. The RAM requirement grows with the Ethereum DAG.
+
+Your home folder (`~` on Linux/OSX or `%USERPROFILE%` on Windows) should
+have at least *double* that in free space *and* be located on an SSD.
+
 You generally want to supply one (or more) stratum connections and a
 threading strategy:
 
