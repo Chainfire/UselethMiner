@@ -61,8 +61,9 @@ CPU | Threads | MT | Watt | MH | W/MH | Notes |
 TR 2950x | 16 | 4x2933 | 115 | 6.1 | 18.9 | [1](#tr-2950x)
 i7-7700HQ | 4 | 2x2400 | 9 | 1.1 | 8.2 | [2](#i7-7700hq)
 AS M1 | 8 | 8x4266 | 14 | 4.0 | 3.5 | [3](#as-m1)
-GKE Xeon | 2 | - | - | 0.6 | - | [4](#gke-xeon)
-1080 ti | - | - | 180 | 32.0 | 5.6 | [5](#1080-ti)
+AS M1 Max | 10 | 8x6400 | 40 | 8.1 | 4.9 | [4](#as-m1-max)
+GKE Xeon | 2 | - | - | 0.6 | - | [5](#gke-xeon)
+1080 ti | - | - | 180 | 32.0 | 5.6 | [6](#1080-ti)
 
 More benchmarks are welcome!
 
@@ -79,6 +80,10 @@ possibly thermal. Runs in the cloud, no physical access, so can't really check
 * powermetrics reported as low as 9 watt usage, sometimes going up to 17, 14 on average
 * What if hugepages could boost this even more?
 * Only minor tweaks for ARMv8, further (minor?) improvements possible
+
+###### AS M1 Max
+* Apple MacBook Pro 16" M1 Max 10CPU/32GPU/64GB/1TB, OS X, no hugepages, watts reported by powermetrics (includes DRAM)
+* Using `--size 88` parameter
 
 ###### GKE Xeon
 * n2-standard-4 class, exact CPU unknown, no hugepages, no power measurement
