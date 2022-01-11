@@ -4,7 +4,7 @@ Because CPU mining Ethereum is useleth; everybody knows this, *right*?
 UselethMiner is an ETHASH CPU miner, and:
 * speaks `EthereumStratum/1.0.0`, with automatic failover
 * comes with an aggregating (potentially encrypted) proxy you can also use for GPU/ASICs
-* runs on Linux (x86-64), Windows (x86-64) and OS X (x86-64 and arm64)
+* runs on Linux (x86-64), Windows (x86-64) and macOS (x86-64 and arm64)
 * can auto-scale CPU usage based on machine load, so you can run it in the background
 * has JSON-RPC/TCP control
 * has a 1% devfee (for both miner and proxy)
@@ -26,7 +26,7 @@ UselethMiner is an ETHASH CPU miner, and:
 * [OS-specific notes](#os-specific-notes)
     * [Linux](#linux)
     * [Windows](#windows)
-    * [OS X](#os-x)
+    * [macOS](#macOS)
 * [Download](#download)
 
 ### About
@@ -74,7 +74,7 @@ More benchmarks are welcome!
 * Dell XPS15, Windows, hugepages, watts reported by XTU (excludes DRAM ?), not sure I trust these numbers
 
 ###### AS M1
-* Apple Mac Mini M1 256/8, OS X, no hugepages, watts reported by powermetrics (includes DRAM)
+* Apple Mac Mini M1 256/8, macOS, no hugepages, watts reported by powermetrics (includes DRAM)
 * While the M1 starts at 4 MH/s, it slowly goes down to 2.8 MH/s, unsure why,
 possibly thermal. Runs in the cloud, no physical access, so can't really check 
 * powermetrics reported as low as 9 watt usage, sometimes going up to 17, 14 on average
@@ -82,7 +82,7 @@ possibly thermal. Runs in the cloud, no physical access, so can't really check
 * Only minor tweaks for ARMv8, further (minor?) improvements possible
 
 ###### AS M1 Max
-* Apple MacBook Pro 16" M1 Max 10CPU/32GPU/64GB/1TB, OS X, no hugepages, watts reported by powermetrics (includes DRAM)
+* Apple MacBook Pro 16" M1 Max 10CPU/32GPU/64GB/1TB, macOS, no hugepages, watts reported by powermetrics (includes DRAM)
 * Using `--size 88` parameter
 
 ###### GKE Xeon
@@ -229,7 +229,7 @@ UselethMiner requires a machine with at least 7 GB of RAM. You should have
 at least 5 GB of free physical RAM (not swap) or you will probably have a
 bad time. The RAM requirement grows with the Ethereum DAG.
 
-Your home folder (`~` on Linux/OSX or `%USERPROFILE%` on Windows) should
+Your home folder (`~` on Linux/macOS or `%USERPROFILE%` on Windows) should
 have at least *double* that in free space *and* be located on an SSD.
 
 You generally want to supply one (or more) stratum connections and a
@@ -383,17 +383,16 @@ you probably want to disable the firewall on the incoming network interface,
 exclude the binary from Windows Defender, and all the other things you might
 need to do to have a server run properly on Windows.
 
-#### OS X
+#### macOS
 
 UselethMiner must be invoked as `/usr/local/uselethminer/uselethminer`.
 
 Logs (if enabled) and DAGs are stored in `~/.uselethminer`.
 
-While UselethMiner attempts to use hugepages on OS X, I have not seen this
+While UselethMiner attempts to use hugepages on macOS, I have not seen this
 actually work at any point on either Intel or ARM platforms.
 
-Only the bare minimum of testing has been done on OS X. I do not have local
-OS X hardware, and both using it remotely as from a VM is a real PITA.
+Only the bare minimum of testing has been done on macOS.
 
 ### Download
 
