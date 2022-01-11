@@ -132,8 +132,8 @@ little dance starts all over again. One solution to that is using the proxy
 barrier on initial connection (or some luck).
 
 The devfee is based on the exact number of hashes produced. The devfee is
-mined using a single thread, so if you're running multiple threads, only one
-of them will be temporarily diverted.
+mined using at most 1/8th of used threads, so if you're running multiple
+threads, only a few of them (usually one) will be temporarily diverted.
 
 Stats shown in on-screen output are live and accurate.
 
