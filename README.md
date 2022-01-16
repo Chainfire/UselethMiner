@@ -11,6 +11,8 @@ UselethMiner is an ETHASH CPU miner, and:
 * may be profitable
 * may be useleth
 
+As a bonus, on the AS M1 Pro/Max, Metal-based GPU mining is also supported. 
+
 ##### Table of contents
 
 * [About](#about)
@@ -27,6 +29,7 @@ UselethMiner is an ETHASH CPU miner, and:
     * [Linux](#linux)
     * [Windows](#windows)
     * [macOS](#macOS)
+        * [Apple Silicon](#apple-silicon)
 * [Download](#download)
 
 ### About
@@ -61,7 +64,9 @@ CPU | Threads | MT | Watt | MH | W/MH | Notes |
 TR 2950x | 16 | 4x2933 | 115 | 6.1 | 18.9 | [1](#tr-2950x)
 i7-7700HQ | 4 | 2x2400 | 9 | 1.1 | 8.2 | [2](#i7-7700hq)
 AS M1 | 8 | 8x4266 | 14 | 4.0 | 3.5 | [3](#as-m1)
-AS M1 Max | 10 | 8x6400 | 40 | 8.1 | 4.9 | [4](#as-m1-max)
+AS M1 Max CPU | 10 | 8x6400 | 40 | 8.1 | 4.9 | [4](#as-m1-max)
+AS M1 Max GPU | - | 8x6400 | 24 | 10.3 | 2.3 | [4](#as-m1-max)
+AS M1 Max CPU+GPU | 10 | 8x6400 | 62 | 18.0 | 3.4 | [4](#as-m1-max)
 GKE Xeon | 2 | - | - | 0.6 | - | [5](#gke-xeon)
 1080 ti | - | - | 180 | 32.0 | 5.6 | [6](#1080-ti)
 
@@ -82,8 +87,10 @@ possibly thermal. Runs in the cloud, no physical access, so can't really check
 * Only minor tweaks for ARMv8, further (minor?) improvements possible
 
 ###### AS M1 Max
-* Apple MacBook Pro 16" M1 Max 10CPU/32GPU/64GB/1TB, macOS, no hugepages, watts reported by powermetrics (includes DRAM)
-* Using `--size 88` parameter
+* Apple MacBook Pro 16" M1 Max 10CPU/32GPU/64GB/1TB, macOS, no hugepages, watts reported by powermetrics
+* CPU: Using `--size 88` parameters, powermetrics cpu + dram
+* GPU: Using `--flavor none --flavor-gpu metal` parameters, powermetrics gpu + dram
+* CPU+GPU: Using `--flavor armv8ah --size 88 --flavor-gpu metal` parameters, powermetrics cpu + gpu + dram
 
 ###### GKE Xeon
 * n2-standard-4 class, exact CPU unknown, no hugepages, no power measurement
@@ -392,12 +399,37 @@ Logs (if enabled) and DAGs are stored in `~/.uselethminer`.
 While UselethMiner attempts to use hugepages on macOS, I have not seen this
 actually work at any point on either Intel or ARM platforms.
 
-Only the bare minimum of testing has been done on macOS.
+##### Apple Silicon
+
+A `metal` backend is available on Apple Silicon for GPU mining. It can be
+used simultaneously with a CPU backend, mining to the same stratum connection.
+
+To enable GPU mining with Metal, add `--flavor-gpu metal` parameters. To
+disable CPU mining, add `--flavor none` parameters.
+
+This was tested on an AS M1 Max. I fully expect it to work on an M1 Pro. No
+idea about the original M1.
+
+CPU thread auto-scaling is disabled while (also) mining on the GPU, because
+that code has an issue causing GPU hashrate to fluctuate heavily. There is
+currently no performance scaling option for the GPU backend.
+
+This `metal` backend is my first code using the Metal Shading Language. Its
+performance is within 1% of the fastest OpenCL-based miner.
+
+While I am convinced the hardware *can* do it faster still, getting MSL to
+actually do it is another story entirely.
 
 ### Download
 
 Downloads are available under the [Releases](https://github.com/Chainfire/UselethMiner/releases)
 section on GitHub.
 
+**Note**: As I currently do not have access to a an Intel-based Mac,
+that version is stuck on v0.1 for now.
+
 Linux and Windows releases can be extracted anywhere and run from there,
 OS X releases are packages that install to `/usr/local/uselethminer`.
+
+Aside from the logs and DAGs stored inside `.uselethminer` in your profile,
+simply deleting the directory containing the binaries is a full uninstall.
