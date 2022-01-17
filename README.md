@@ -64,9 +64,9 @@ CPU | Threads | MT | Watt | MH | W/MH | Notes |
 TR 2950x | 16 | 4x2933 | 115 | 6.1 | 18.9 | [1](#tr-2950x)
 i7-7700HQ | 4 | 2x2400 | 9 | 1.1 | 8.2 | [2](#i7-7700hq)
 AS M1 | 8 | 8x4266 | 14 | 4.0 | 3.5 | [3](#as-m1)
-AS M1 Max CPU | 10 | 8x6400 | 40 | 8.1 | 4.9 | [4](#as-m1-max)
+AS M1 Max CPU | 10 | 8x6400 | 40 | 10.4 | 3.8 | [4](#as-m1-max)
 AS M1 Max GPU | - | 8x6400 | 24 | 10.3 | 2.3 | [4](#as-m1-max)
-AS M1 Max CPU+GPU | 10 | 8x6400 | 62 | 18.0 | 3.4 | [4](#as-m1-max)
+AS M1 Max CPU+GPU | 10 | 8x6400 | 62 | 20.0 | 3.4 | [4](#as-m1-max)
 GKE Xeon | 2 | - | - | 0.6 | - | [5](#gke-xeon)
 1080 ti | - | - | 180 | 32.0 | 5.6 | [6](#1080-ti)
 
@@ -88,9 +88,9 @@ possibly thermal. Runs in the cloud, no physical access, so can't really check
 
 ###### AS M1 Max
 * Apple MacBook Pro 16" M1 Max 10CPU/32GPU/64GB/1TB, macOS, no hugepages, watts reported by powermetrics
-* CPU: Using `--size 88` parameters, powermetrics cpu + dram
+* CPU: Using `--flavor armv8af --size 88` parameters, powermetrics cpu + dram
 * GPU: Using `--flavor none --flavor-gpu metal` parameters, powermetrics gpu + dram
-* CPU+GPU: Using `--flavor armv8ah --size 88 --flavor-gpu metal` parameters, powermetrics cpu + gpu + dram
+* CPU+GPU: Using `--flavor armv8af --size 88 --flavor-gpu metal` parameters, powermetrics cpu + gpu + dram
 
 ###### GKE Xeon
 * n2-standard-4 class, exact CPU unknown, no hugepages, no power measurement
@@ -425,8 +425,8 @@ actually do it is another story entirely.
 Downloads are available under the [Releases](https://github.com/Chainfire/UselethMiner/releases)
 section on GitHub.
 
-**Note**: As I currently do not have access to a an Intel-based Mac,
-that version is stuck on v0.1 for now.
+Latest version for macOS/arm64: v0.21
+Latest version for all other platforms: v0.2
 
 Linux and Windows releases can be extracted anywhere and run from there,
 OS X releases are packages that install to `/usr/local/uselethminer`.
