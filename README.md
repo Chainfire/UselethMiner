@@ -425,8 +425,12 @@ actually do it is another story entirely.
 Downloads are available under the [Releases](https://github.com/Chainfire/UselethMiner/releases)
 section on GitHub.
 
-Latest version for macOS/arm64: v0.21
-Latest version for all other platforms: v0.2
+Platform | Latest |
+:---: | :---: |
+Windows x86_64 | v0.2 |
+Linux x86_64 | v0.2 |
+macOS x86_64 | v0.2 |
+macOS arm64 | v0.21 |
 
 Linux and Windows releases can be extracted anywhere and run from there,
 OS X releases are packages that install to `/usr/local/uselethminer`.
