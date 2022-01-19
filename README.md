@@ -430,7 +430,7 @@ Platform | Latest |
 Windows x86_64 | v0.2 |
 Linux x86_64 | v0.2 |
 macOS x86_64 | v0.2 |
-macOS arm64 | v0.22 |
+macOS arm64 | v0.23 |
 
 Linux and Windows releases can be extracted anywhere and run from there,
 OS X releases are packages that install to `/usr/local/uselethminer`.
